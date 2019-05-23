@@ -9,15 +9,17 @@
 
 ## GetDeviceToken.pyの使用
 対話サービスを利用するにはデバイスIDの登録とデバイストークンの取得が必要です。  
+スクリプト中における `client_secret` はダミー値であるため、ご自身で取得した値に書き換えて実行してください。
+
 GetDeviceToken.pyを実行すると以下の様にデバイスID登録用のURLを表示して登録の完了を待機します。
 
 ```
 $ python3 GetDeviceToken.py
-Success to get Device ID :xxxxxxxxxx
-Please register above ID as your device on User Dashboard. https://users.sebastien.ai
+Success to get DeviceID :xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 デバイスIDの取得に成功しました。
+Please register DeviceID as your device on User Dashboard.
 下記リンク（↓）を使ってブラウザ等でデバイスIDを自分のアカウントに登録して下さい。
-https://users.sebastien.ai/dashboard/device_registration?confirm=yes&device_id=xxxxxxxxxx
+https://doufr.aiplat.jp/device/regist?directAccess=true&deviceId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 Press any key AFTER registration >>> 
 ```
@@ -27,13 +29,10 @@ Press any key AFTER registration >>>
 登録が完了したらEnterを入力して下さい。
 
 ```
-{
-    "device_token": "xxxxxxx-xxx-xxx-xxxx-xxxxxxxxxxx", 
-    "refresh_token": "ooooooo-ooo-ooo-oooo-ooooooooooo", 
-    "status": "valid"
-}
-SAVE device_token : xxxxxxx-xxx-xxx-xxxx-xxxxxxxxxxx
-SAVE refresh_token : ooooooo-ooo-ooo-oooo-ooooooooooo
+Success to get DeviceToken : xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+デバイストークンの取得に成功しました。
+Success to get RefreshToken : xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+リフレッシュトークンの取得に成功しました。
 ```
 
 GetDeviceToken.pyはデバイストークンとリフレッシュトークンを取得して標準出力に表示します。
@@ -60,7 +59,7 @@ $ g++ --std=c++11 -lspeak -o speak_sample speak_sample.cpp
 コマンドライン引数に接続先URLとデバイストークンを与えて起動します。
 
 ```
-$ ./speak_sample wss://spf-v2.sebastien.ai/talk [device token]
+$ ./speak_sample wss://dospf.aiplat.jp/ciel [device token]
 ```
 
 起動すると音声対話ができます。
