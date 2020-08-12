@@ -9,33 +9,21 @@
 
 ## GetDeviceToken.pyの使用
 対話サービスを利用するにはデバイスIDの登録とデバイストークンの取得が必要です。  
-スクリプト中における `client_secret` はダミー値であるため、ご自身で取得した値に書き換えて実行してください。
-
-GetDeviceToken.pyを実行すると以下の様にデバイスID登録用のURLを表示して登録の完了を待機します。
-
-```
-$ python3 GetDeviceToken.py
-Success to get DeviceID :xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-デバイスIDの取得に成功しました。
-Please register DeviceID as your device on User Dashboard.
-下記リンク（↓）を使ってブラウザ等でデバイスIDを自分のアカウントに登録して下さい。
-https://doufr.aiplat.jp/device/regist?directAccess=true&deviceId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-
-Press any key AFTER registration >>> 
-```
-
-ブラウザでURLにアクセスしてデバイスID登録を完了させて下さい。  
-登録にはGoogleアカウントまたはdアカウントによる認証が必要です。  
-登録が完了したらEnterを入力して下さい。
+スクリプト中における `CLIENT_SECRET` はダミー値であるため、[Agentcraft](http://agentcraft.sebastien.ai/)の設定タグから、ご自身で取得した値に書き換えて実行してください。
+GetDeviceToken.pyを実行すると以下の様にデバイスID・デバイストークン・リフレッシュトークンが標準出力に表示されます。
 
 ```
-Success to get DeviceToken : xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-デバイストークンの取得に成功しました。
-Success to get RefreshToken : xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-リフレッシュトークンの取得に成功しました。
+{
+  "device_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+}
+SAVE ./.trial_device_id : xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+{
+  "device_token": "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy",
+  "refresh_token": "oooooooo-oooo-oooo-oooo-oooooooooooo"
+}
+SAVE ./.trial_device_token : yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy
+SAVE ./.trial_refresh_token : oooooooo-oooo-oooo-oooo-oooooooooooo
 ```
-
-GetDeviceToken.pyはデバイストークンとリフレッシュトークンを取得して標準出力に表示します。
 
 > リフレッシュトークンはデバイストークンの更新に使用します。  
 GetDeviceToken.pyは取得したリフレッシュトークンを隠しファイルに保存しています。
@@ -59,7 +47,7 @@ $ g++ --std=c++11 -lspeak -o speak_sample speak_sample.cpp
 コマンドライン引数に接続先URLとデバイストークンを与えて起動します。
 
 ```
-$ ./speak_sample wss://dospf.aiplat.jp/ciel [device token]
+$ ./speak_sample wss://spf-v2.sebastien.ai/talk [device token]
 ```
 
 起動すると音声対話ができます。
